@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">AIWP</string>
+    <string name="shared_preferences_file_key">com.minosapps.aiwp.preferences</string>
+
+    <string name="prompt_template">I NEED to test how the tool works with extremely simple
+        prompts. DO NOT add any detail, just use it AS-IS: %1$s %2$s %3$s Do not add ANY text to
+        the image. Do not display the temperature or location by adding text, only represent it
+        in the environment. The image must take up
+        the entire frame, there must be no flat
+        color borders
+        on the top or bottom. Remove all text.</string>
+
+    <string name="time_source">The time in the picture is %1$s.</string>
+    <string name="location_source">The location of the picture is %1$s.</string>
+    <string name="weather_source">The weather in the picture is: %1$s</string>
+
+    <string name="city_instructions">A beautiful scene of a typical cityscape.</string>
+    <string name="nature_instructions">A beautiful, typical wild nature scene
+        .</string>
+    <string name="landmarks_instructions">A beautiful scene of a typical landmark.</string>
+    <string name="people_instructions">A beautiful portrait of a typical person.</string>
+    <string name="animals_instructions">A beautiful portrait of a typical animal.</string>
+    <string name="default_custom_instructions">A super cute cartoon crocodile wearing a red coat
+        and a fluffy scarf. He is standing in a typical nature scene with the town in the
+        background.</string>
+
+    <string name="watercolor_style">Watercolor painting with gorgeous, vibrant colors.</string>
+    <string name="pointilism_style">Highly detailed painting in a pointilism style, with lots of
+        details and gorgeous colors.</string>
+    <string name="abstract_style">Highly abstract painting with clear shapes and contrast.</string>
+    <string name="photorealistic_style">Photograph taken with professional
+        SLR camera.</string>
+    <string name="impressionist_style">Impressionist painting, incredible detail, fine brush
+        strokes, beautiful color palette.</string>
+    <string name="cubist_style">Cubist painting, masterpiece with distinct style and beautiful
+        gradients.</string>
+    <string name="default_custom_style">Adorable 2D cartoon image. Flat colors, fluffy fur and
+        fabric, colorful, vibrant. Subject is small in center of image.</string>
+
+    <string
+        name="meteo_url">https://api.open-meteo.com/v1/forecast?latitude=%1$s&amp;longitude=%2$s&amp;current=temperature_2m,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover&amp;forecast_days=1</string>
+    <string name="openai_url">https://api.openai.com/v1/images/generations</string>
+    <string name="credit_text">Made by Markus Sobkowski</string>
+    <string name="openai_hint">sk-xxxxxxxx...</string>
+    <string name="openai_title">Enter OpenAI API Key here:</string>
+    <string name="frequency_title">Update Frequency</string>
+    <string name="style_hint">Custom Style</string>
+    <string name="style_title">Wallpaper Style</string>
+    <string name="instructions_hint">Custom Instructions</string>
+    <string name="instructions_title">Wallpaper Content</string>
+    <string name="permission_status_checked">All Permissions Granted</string>
+    <string name="permission_status_unchecked">Missing Location Permission, press button
+        above.</string>
+    <string name="permission_button_text">Grant Background Location Permission</string>
+    <string name="permission_info">In order to generate location-based images, AIWP needs the
+        background location permission.\nPress the button below to open the settings page and grant
+        access
+        "all the time".</string>
+    <string name="weather_title">Use Weather</string>
+    <string name="location_title">Use Location</string>
+    <string name="time_title">Use Time</string>
+    <string
+        name="api_key_info">In order to generate images, you will need to enter your own OpenAI API
+        key below.</string>
+    <string name="api_key_sub_info">It is never sent anywhere except to OpenAI.\nIf you do not yet have a key, follow instructions on the
+        <a href="https://platform.openai.com/">OpenAI website</a> to create an account and
+        generate an API key.
+    </string>
+    <string name="api_link">OpenAI API</string>
+    <string name="api_key_url">https://platform.openai.com/</string>
+    <string name="location_info">Use the current location and weather to influence the
+        generated images.</string>
+    <string name="content_info">Choose from presets or define your own prompts.</string>
+
+</resources>

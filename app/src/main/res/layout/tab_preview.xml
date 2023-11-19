@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/failure_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Failed to generate image:"/>
+
+        <TextView
+            android:id="@+id/failure_subtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:alpha="0.5"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/test_button"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            style="@style/ThemeOverlay.Material3.Button"
+            app:icon="@drawable/outline_draw_24"
+            android:text="Generate" />
+
+        <Button
+            android:id="@+id/wp_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:icon="@drawable/outline_image_24"
+            android:text="Set as Wallpaper"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/wp_spinner"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/loading_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generating image..."
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/loading_subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This may take up to a minute."
+        android:alpha="0.5"
+        android:visibility="gone"/>
+
+</LinearLayout>

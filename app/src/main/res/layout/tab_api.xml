@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/api_key_info"
+                android:textAlignment="textStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1.0"
+                android:layout_margin="5dp"
+                android:text="@string/api_key_info"/>
+
+            <TextView
+                android:id="@+id/api_key_sub_info"
+                android:textAlignment="textStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:layout_margin="5dp"
+                android:linksClickable="true"
+                android:text="@string/api_key_sub_info"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/api_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:checked="false"/>
+
+                <EditText
+                    android:id="@+id/edittext_api_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/openai_hint"
+                    android:inputType="textPassword"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

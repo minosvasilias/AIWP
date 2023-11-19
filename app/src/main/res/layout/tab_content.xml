@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/api_key_info"
+                android:textAlignment="textStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1.0"
+                android:layout_margin="5dp"
+                android:paddingBottom="20dp"
+                android:text="@string/content_info"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:alpha="0.5"
+                android:text="@string/instructions_title"/>
+
+            <Spinner
+                android:id="@+id/spinner_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:id="@+id/edittext_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/instructions_hint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:alpha="0.5"
+                android:text="@string/style_title"/>
+
+            <Spinner
+                android:id="@+id/spinner_style"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:id="@+id/edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/style_hint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:alpha="0.5"
+                android:text="@string/frequency_title"/>
+
+            <!-- Spinner for Frequency -->
+            <Spinner
+                android:id="@+id/spinner_frequency"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/api_key_info"
+                android:textAlignment="textStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1.0"
+                android:layout_margin="5dp"
+                android:paddingBottom="20dp"
+                android:text="@string/location_info"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:text="@string/time_title"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:text="@string/location_title"/>
+
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_weather"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:text="@string/weather_title"/>
+
+            <LinearLayout
+                android:id="@+id/background_permission_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_margin="5dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:text="@string/permission_info"/>
+
+                <Button
+                    android:id="@+id/background_permission_button"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:icon="@drawable/baseline_priority_high_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/permission_button_text"
+                    />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/location_permission_status"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:enabled="false"
+                android:checked="false"
+                android:text="@string/permission_status_unchecked"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
