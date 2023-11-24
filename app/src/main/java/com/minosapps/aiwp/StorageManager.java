@@ -8,8 +8,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -73,6 +75,15 @@ public class StorageManager {
         Uri uri = Uri.parse(uriString);
         try (InputStream is = context.getContentResolver().openInputStream(uri)) {
             return BitmapFactory.decodeStream(is);
+        } catch (FileNotFoundException e) {
+            Log.e("ImageLoader", "File not found for URI: " + uriString, e);
+            return null;
+        } catch (IOException e) {
+            Log.e("ImageLoader", "IOException when trying to open URI: " + uriString, e);
+            return null;
+        } catch (SecurityException e) {
+            Log.e("ImageLoader", "Security Exception: Insufficient permissions for URI: " + uriString, e);
+            return null;
         }
     }
 
