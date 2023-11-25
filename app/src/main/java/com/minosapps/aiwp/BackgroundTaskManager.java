@@ -89,10 +89,7 @@ public class BackgroundTaskManager {
                 return;
             default:
                 // Default to daily
-                setAlarmForTime(22, 00, 0);
-                setAlarmForTime(21, 45, 1);
-                setAlarmForTime(21, 15, 2);
-                setAlarmForTime(21, 30, 3);
+                setAlarmForTime(12, 00, 0);
                 return;
         }
     }
