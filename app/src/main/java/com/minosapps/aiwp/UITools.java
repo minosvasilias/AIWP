@@ -11,7 +11,8 @@ import android.widget.Spinner;
 
 import androidx.core.util.Consumer;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.slider.Slider;
 
 import java.util.Arrays;
 
@@ -28,7 +29,32 @@ public class UITools {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-    static void setupSwitch(SwitchMaterial switchMaterial, Consumer<Boolean> onCheckedChangedAction) {
+
+    public static void populateSlider(Slider slider, Enum<?>[] values) {
+        // Set the slider's value range
+        slider.setValueFrom(0);
+        slider.setValueTo(values.length - 1);
+
+        // Set the step size to 1 to snap to each enum value
+        slider.setStepSize(1);
+
+        // Set label formatter to display the formatted string of the enum
+        slider.setLabelFormatter(value -> {
+            // Convert float value to int to use as an index
+            int index = (int) value;
+
+            // Ensure index is within bounds
+            if (index < 0 || index >= values.length) {
+                return "";
+            }
+
+            // Return the formatted string for the enum value
+            String formattedValue = EnumUtils.toFormattedString(values[index]);
+            return "  " + formattedValue + "  ";
+        });
+    }
+
+    static void setupSwitch(MaterialSwitch switchMaterial, Consumer<Boolean> onCheckedChangedAction) {
         switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
             onCheckedChangedAction.accept(isChecked);
         });
@@ -63,6 +89,15 @@ public class UITools {
             @Override
             public void afterTextChanged(Editable s) {
                 afterTextChangedAction.accept(s.toString());
+            }
+        });
+    }
+
+    public static void setupSlider(Slider slider, Consumer<Float> onValueChangedAction) {
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(Slider slider, float value, boolean fromUser) {
+                onValueChangedAction.accept(value);
             }
         });
     }

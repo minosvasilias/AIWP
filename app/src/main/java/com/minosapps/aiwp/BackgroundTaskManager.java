@@ -37,22 +37,36 @@ public class BackgroundTaskManager {
         // Set the alarm to start at a specific time
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
+
+        // Get current hour and minute
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = calendar.get(Calendar.MINUTE);
+
+        // Set calendar to desired alarm time
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
-        // Repeat the alarm every day at the specified time
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
-                alarmIntent);
-        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-        //        alarmIntent);
+        // If current time is later than the alarm time, set the alarm for the next day
+        if (hourOfDay < currentHour || (hourOfDay == currentHour && minute <= currentMinute)) {
+            calendar.add(Calendar.DATE, 1);
+        }
+
+        if (settings.getUseExactTimer()) {
+            // Exact alarms can not auto-repeat, must be set again next time
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+        } else {
+            // Repeat the alarm every day at the specified time
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        }
         addActiveRequestCode(requestCode);
     }
 
     public void scheduleWallpaperChange() {
         Settings.Frequency currentFrequency = settings.getFrequency();
+        boolean isExact = settings.getUseExactTimer();
         // Check if the current schedule already matches the desired settings
-        if (isWorkScheduled(currentFrequency)) {
+        if (isWorkScheduled(currentFrequency, isExact)) {
             return; // Skip scheduling as it's already set with the desired frequency
         }
 
@@ -63,7 +77,7 @@ public class BackgroundTaskManager {
             return;
         }
 
-        storeCurrentSettings(currentFrequency);
+        storeCurrentSettings(currentFrequency, isExact);
         switch (currentFrequency) {
             case TWICE_DAILY:
                 setAlarmForTime(6, 0, 0);
@@ -89,31 +103,31 @@ public class BackgroundTaskManager {
                 return;
             default:
                 // Default to daily
-                setAlarmForTime(22, 00, 0);
-                setAlarmForTime(21, 45, 1);
-                setAlarmForTime(21, 15, 2);
-                setAlarmForTime(21, 30, 3);
+                setAlarmForTime(12, 00, 0);
                 return;
         }
     }
 
 
-    private boolean isWorkScheduled(Settings.Frequency frequency) {
+    private boolean isWorkScheduled(Settings.Frequency frequency, boolean isExact) {
         String storedFrequency = sharedPreferences.getString("SCHEDULED_FREQUENCY", null);
+        boolean storedExact = sharedPreferences.getBoolean("SCHEDULED_IS_EXACT", false);
 
         // Compare stored frequency with current frequency
-        return frequency.name().equals(storedFrequency);
+        return frequency.name().equals(storedFrequency) && storedExact == isExact;
     }
 
-    private void storeCurrentSettings(Settings.Frequency frequency) {
+    private void storeCurrentSettings(Settings.Frequency frequency, boolean isExact){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("SCHEDULED_FREQUENCY", frequency.name());
+        editor.putBoolean("SCHEDULED_IS_EXACT", isExact);
         editor.apply();
     }
 
     private void clearCurrentSettings() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("SCHEDULED_FREQUENCY");
+        editor.remove("SCHEDULED_IS_EXACT");
         editor.apply();
     }
 

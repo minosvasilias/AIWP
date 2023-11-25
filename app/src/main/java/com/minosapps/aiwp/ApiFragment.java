@@ -35,7 +35,19 @@ public class ApiFragment extends Fragment {
 
         binding.apiKeySubInfo.setMovementMethod(LinkMovementMethod.getInstance());
 
+        UITools.populateSlider(binding.sliderFrequency, Settings.Frequency.values());
+        UITools.setupSlider(binding.sliderFrequency, position -> {
+            Settings.Frequency selectedFrequency = Settings.Frequency.values()[position.intValue()];
+            settings.setFrequency(selectedFrequency);
+            binding.sliderLabel.setText(EnumUtils.toFormattedString(Settings.Frequency.values()[position.intValue()]));
+        });
+        binding.sliderFrequency.setValue(settings.getFrequency().ordinal());
+        binding.sliderLabel.setText(EnumUtils.toFormattedString(settings.getFrequency()));
 
+        UITools.setupSwitch(binding.switchExact, isChecked -> {
+            settings.setUseExactTimer(isChecked);
+        });
+        binding.switchExact.setChecked(settings.getUseExactTimer());
 
         return binding.getRoot();
     }

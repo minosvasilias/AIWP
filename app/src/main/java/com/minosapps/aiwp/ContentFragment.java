@@ -26,7 +26,6 @@ public class ContentFragment extends Fragment {
 
         UITools.populateSpinner(getContext(), binding.spinnerInstructions, Instructions.values());
         UITools.populateSpinner(getContext(), binding.spinnerStyle, Style.values());
-        UITools.populateSpinner(getContext(), binding.spinnerFrequency, Frequency.values());
 
         UITools.setupSpinner(binding.spinnerInstructions, position -> {
             Instructions selectedInstruction = Instructions.values()[position];
@@ -40,11 +39,6 @@ public class ContentFragment extends Fragment {
             binding.edittextStyle.setVisibility(selectedStyle == Style.CUSTOM ? View.VISIBLE : View.GONE);
         });
         binding.spinnerStyle.setSelection(settings.getStyle().ordinal());
-        UITools.setupSpinner(binding.spinnerFrequency, position -> {
-            Frequency selectedFrequency = Frequency.values()[position];
-            settings.setFrequency(selectedFrequency);
-        });
-        binding.spinnerFrequency.setSelection(settings.getFrequency().ordinal());
 
         binding.edittextInstructions.setText(settings.getCustomInstructions());
         UITools.setupEditText(binding.edittextInstructions, text -> settings.setCustomInstructions(text));
