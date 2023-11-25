@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 (tab, position) -> {
                     switch (position){
                         case 0:
-                            tab.setText("API");
-                            tab.setIcon(R.drawable.twotone_code_24);
+                            tab.setText("Setup");
+                            tab.setIcon(R.drawable.outline_science_24);
                             return;
                         case 1:
                             tab.setText("Location");
