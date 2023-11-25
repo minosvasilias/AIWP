@@ -52,6 +52,11 @@ public class ContentFragment extends Fragment {
         binding.edittextStyle.setText(settings.getCustomStyle());
         UITools.setupEditText(binding.edittextStyle, text -> settings.setCustomStyle(text));
 
+        UITools.setupSwitch(binding.switchExact, isChecked -> {
+            settings.setUseExactTimer(isChecked);
+        });
+        binding.switchExact.setChecked(settings.getUseExactTimer());
+
         return binding.getRoot();
     }
 }

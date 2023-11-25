@@ -77,6 +77,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switch_exact"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:text="@string/exact_title"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/exact_subtitle"
+                android:alpha="0.5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-20dp"/>
+
         </LinearLayout>
     </ScrollView>
 

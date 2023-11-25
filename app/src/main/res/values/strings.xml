@@ -59,6 +59,8 @@
     <string name="weather_title">Use Weather</string>
     <string name="location_title">Use Location</string>
     <string name="time_title">Use Time</string>
+    <string name="exact_title">Use Exact Background Timers</string>
+    <string name="exact_subtitle">Less battery efficient, but more reliable</string>
     <string
         name="api_key_info">In order to generate images, you will need to enter your own OpenAI API
         key below.</string>
