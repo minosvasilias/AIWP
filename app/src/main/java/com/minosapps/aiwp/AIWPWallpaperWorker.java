@@ -8,19 +8,25 @@ import android.util.Log;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import java.io.InputStream;
+import java.util.Set;
 
 public class AIWPWallpaperWorker extends Worker {
 
     private static final String PREFS_NAME = "AIWPWallpaperWorkerPrefs";
     private static final String LAST_RUN_TIME_KEY = "lastRunTime";
     private static final long TEN_MINUTES_MILLIS = 10 * 60 * 1000;
+    private BackgroundTaskManager backgroundTaskManager;
+    private Settings settings;
 
     public AIWPWallpaperWorker(Context context, WorkerParameters workerParams) {
         super(context, workerParams);
+        backgroundTaskManager = new BackgroundTaskManager(context);
+        settings = new Settings(context);
     }
 
     @Override
     public Result doWork() {
+        reschedule();
         if (!shouldExecuteWork()) {
             return Result.success();
         }
@@ -45,6 +51,12 @@ public class AIWPWallpaperWorker extends Worker {
             }
         } catch (Exception e) {
             return Result.failure();
+        }
+    }
+
+    private void reschedule(){
+        if(settings.getUseExactTimer()){
+            backgroundTaskManager.scheduleWallpaperChange();
         }
     }
 
