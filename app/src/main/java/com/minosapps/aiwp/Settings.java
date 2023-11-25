@@ -56,7 +56,21 @@ public class Settings {
     }
 
     public boolean getUseWeather() {
-        return sharedPreferences.getBoolean("USE_WEATHER", false);
+        return sharedPreferences.getBoolean("USE_WEATHER", true);
+    }
+
+
+    public void setUseExactTimer(boolean useExact) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (getUseExactTimer() != useExact) {
+            editor.putBoolean("USE_EXACT", useExact);
+            editor.apply();
+            rescheduleWallpaperChange();
+        }
+    }
+
+    public boolean getUseExactTimer() {
+        return sharedPreferences.getBoolean("USE_EXACT", false);
     }
 
     public void setInstructions(Instructions instructions) {
