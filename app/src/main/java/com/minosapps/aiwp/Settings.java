@@ -56,7 +56,7 @@ public class Settings {
     }
 
     public boolean getUseWeather() {
-        return sharedPreferences.getBoolean("USE_WEATHER", true);
+        return sharedPreferences.getBoolean("USE_WEATHER", false);
     }
 
 
@@ -70,7 +70,7 @@ public class Settings {
     }
 
     public boolean getUseExactTimer() {
-        return sharedPreferences.getBoolean("USE_EXACT", false);
+        return sharedPreferences.getBoolean("USE_EXACT", true);
     }
 
     public void setInstructions(Instructions instructions) {
