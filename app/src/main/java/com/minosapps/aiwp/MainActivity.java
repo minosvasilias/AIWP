@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateActiveStatus(){
         if(!ApiFragment.isApiKeyValid(settings)){
-            binding.activeStatus.setText("No valid API Key. Check the API tab!");
+            binding.activeStatus.setText("No valid API Key. Check the Setup tab!");
             binding.activeSwitch.setChecked(false);
             binding.activeSwitch.setEnabled(false);
             return;
