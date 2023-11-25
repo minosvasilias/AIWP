@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 import androidx.core.util.Consumer;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class UITools {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-    static void setupSwitch(SwitchMaterial switchMaterial, Consumer<Boolean> onCheckedChangedAction) {
+    static void setupSwitch(MaterialSwitch switchMaterial, Consumer<Boolean> onCheckedChangedAction) {
         switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
             onCheckedChangedAction.accept(isChecked);
         });
