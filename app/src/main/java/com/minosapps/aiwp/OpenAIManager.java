@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -35,8 +36,6 @@ public class OpenAIManager {
     }
 
     public String assemblePrompt() {
-        Instructions instructions = settings.getInstructions();
-        Style style = settings.getStyle();
 
 
         String sourcePrompt = "";
@@ -55,59 +54,63 @@ public class OpenAIManager {
         sourcePrompt = sourcePrompt.replace(".", ". ");
 
 
-        String instructionPrompt = "";
+        Instructions instructions = settings.getInstructions();
+        String instructionPrompt = getInstructionPrompt(instructions);
 
-        switch (instructions) {
-            case CITY:
-                instructionPrompt = context.getString(R.string.city_instructions);
-                break;
-            case NATURE:
-                instructionPrompt = context.getString(R.string.nature_instructions);
-                break;
-            case LANDMARKS:
-                instructionPrompt = context.getString(R.string.landmarks_instructions);
-                break;
-            case PEOPLE:
-                instructionPrompt = context.getString(R.string.people_instructions);
-                break;
-            case ANIMALS:
-                instructionPrompt = context.getString(R.string.animals_instructions);
-                break;
-            case CUSTOM:
-                instructionPrompt = settings.getCustomInstructions();
-                break;
-        }
-
-        String stylePrompt = "";
-
-        switch (style) {
-            case WATERCOLOR:
-                stylePrompt = context.getString(R.string.watercolor_style);
-                break;
-            case POINTILLIST:
-                stylePrompt = context.getString(R.string.pointilism_style);
-                break;
-            case ABSTRACT:
-                stylePrompt = context.getString(R.string.abstract_style);
-                break;
-            case PHOTOREALISTIC:
-                stylePrompt = context.getString(R.string.photorealistic_style);
-                break;
-            case IMPRESSIONIST:
-                stylePrompt = context.getString(R.string.impressionist_style);
-                break;
-            case CUBIST:
-                stylePrompt = context.getString(R.string.cubist_style);
-                break;
-            case CUSTOM:
-                stylePrompt = settings.getCustomStyle();
-                break;
-        }
+        Style style = settings.getStyle();
+        String stylePrompt = getStylePrompt(style);
 
         String promptTemplate = context.getString(R.string.prompt_template);
         String prompt = String.format(promptTemplate, sourcePrompt, instructionPrompt, stylePrompt);
         return prompt;
     }
+
+    private String getInstructionPrompt(Instructions instructions){
+        switch (instructions) {
+            case CITY:
+                return context.getString(R.string.city_instructions);
+            case NATURE:
+                return context.getString(R.string.nature_instructions);
+            case LANDMARKS:
+                return context.getString(R.string.landmarks_instructions);
+            case PEOPLE:
+                return context.getString(R.string.people_instructions);
+            case ANIMALS:
+                return context.getString(R.string.animals_instructions);
+            case CUSTOM:
+                return settings.getCustomInstructions();
+            case RANDOM:
+                Instructions randInstructions = Instructions.values()[new Random().nextInt(Instructions.values().length-1)];
+                return getInstructionPrompt(randInstructions);
+            default:
+                return "";
+        }
+    }
+
+    private String getStylePrompt(Style style){
+        switch (style) {
+            case WATERCOLOR:
+                return context.getString(R.string.watercolor_style);
+            case POINTILLIST:
+                return context.getString(R.string.pointilism_style);
+            case ABSTRACT:
+                return context.getString(R.string.abstract_style);
+            case PHOTOREALISTIC:
+                return context.getString(R.string.photorealistic_style);
+            case IMPRESSIONIST:
+                return context.getString(R.string.impressionist_style);
+            case CUBIST:
+                return context.getString(R.string.cubist_style);
+            case CUSTOM:
+                return settings.getCustomStyle();
+            case RANDOM:
+                Style randStyle = Style.values()[new Random().nextInt(Style.values().length-1)];
+                return getStylePrompt(randStyle);
+            default:
+                return "";
+        }
+    }
+
     public InputStream fetchImage() throws Exception {
         String prompt = assemblePrompt();
         OkHttpClient client = new OkHttpClient.Builder()

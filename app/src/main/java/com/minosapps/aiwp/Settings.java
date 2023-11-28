@@ -18,11 +18,11 @@ public class Settings {
     }
 
     public enum Instructions {
-        CITY, NATURE, LANDMARKS, PEOPLE, ANIMALS, CUSTOM;
+        CITY, NATURE, LANDMARKS, PEOPLE, ANIMALS, CUSTOM, RANDOM;
     }
 
     public enum Style {
-        POINTILLIST, WATERCOLOR, ABSTRACT, PHOTOREALISTIC, IMPRESSIONIST, CUBIST, CUSTOM;
+        POINTILLIST, WATERCOLOR, ABSTRACT, PHOTOREALISTIC, IMPRESSIONIST, CUBIST, CUSTOM, RANDOM;
     }
 
     public enum Frequency {
